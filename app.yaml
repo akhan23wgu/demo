@@ -19,12 +19,12 @@ spec:
         service:
           type: "LoadBalancer"
           ports:
-            http: 8888
+            http: 8887
         staticSiteConfigmap: "index-html-configmap"
         cloneStaticSiteFromGit.repository:
         serverBlock: |-
           server {
-            listen 8888;
+            listen 8887;
             root /app/;
             index index.html index.htm;
             location /demovol/ {
