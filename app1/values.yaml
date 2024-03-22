@@ -1,4 +1,4 @@
-name: "demoWebsite1"
+name: "demowebsite1"
 address: "https://kubernetes.default.svc"
 app_namespace: "demo"
 helmchart_url: "registry-1.docker.io/bitnamicharts"
