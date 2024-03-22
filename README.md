@@ -1,0 +1,2 @@
+# demo
+ArgoCD Demo
