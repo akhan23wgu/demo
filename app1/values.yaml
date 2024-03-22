@@ -1,0 +1,63 @@
+name: "demoWebsite1"
+address: "https://kubernetes.default.svc"
+app_namespace: "demo"
+helmchart_url: "registry-1.docker.io/bitnamicharts"
+chart: "nginx"
+version: "15.14.0"
+repoversion: ""
+update_strategy: latest
+app_values: |-
+        service:
+          type: "LoadBalancer"
+          ports:
+            http: 8888
+        staticSiteConfigmap: "index-html-configmap"
+        cloneStaticSiteFromGit.repository:
+        serverBlock: |-
+          server {
+            listen 8888;
+            root /app/;
+            index index.html index.htm;
+            location /demovol/ {
+              alias /demovol/;
+              index __i;
+              autoindex on;
+              autoindex_format json;
+              disable_symlinks off;
+            }
+            location / {
+              root /app/;
+            }
+          }
+        extraDeploy:
+          - |
+            apiVersion: v1
+            kind: ConfigMap
+            metadata:
+                name: index-html-configmap
+                namespace: demo
+            data:
+                index.html: |
+                    <html>
+                    <h1>Welcome</h1>
+                    </br>
+                    <h1> another project completed </h1>
+                    </html>
+          - |
+            apiVersion: v1
+            kind: PersistentVolumeClaim
+            metadata:
+              name: demovol
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 4Gi
+        extraVolumes:
+          - name: demovol
+            persistentVolumeClaim:
+              claimName: demovol
+        extraVolumeMounts:
+          - mountPath: /demovol
+            name: demovol
