@@ -11,7 +11,7 @@ app_values: |-
           type: "LoadBalancer"
           ports:
             http: 8889
-        staticSiteConfigmap: "index-html-configmap"
+        staticSiteConfigmap: "index-html-configmap-2"
         cloneStaticSiteFromGit.repository:
         serverBlock: |-
           server {
@@ -34,7 +34,7 @@ app_values: |-
             apiVersion: v1
             kind: ConfigMap
             metadata:
-                name: index-html-configmap
+                name: index-html-configmap-2
                 namespace: demo
             data:
                 index.html: |
