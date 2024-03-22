@@ -41,8 +41,7 @@ app_values: |-
                     <html>
                     <h1>Welcome</h1>
                     </br>
-                    <h1> another project completed </h1>
-                    <h1> another project completed 2</h1>
+                    <h1> Another project completed! </h1>
                     </html>
           - |
             apiVersion: v1
