@@ -18,8 +18,8 @@ app_values: |-
             listen 8888;
             root /app/;
             index index.html index.htm;
-            location /demovol/ {
-              alias /demovol/;
+            location /demovol1/ {
+              alias /demovol1/;
               index __i;
               autoindex on;
               autoindex_format json;
@@ -47,7 +47,7 @@ app_values: |-
             apiVersion: v1
             kind: PersistentVolumeClaim
             metadata:
-              name: demovol
+              name: demovol1
             spec:
               accessModes:
               - ReadWriteOnce
@@ -55,9 +55,9 @@ app_values: |-
                 requests:
                   storage: 4Gi
         extraVolumes:
-          - name: demovol
+          - name: demovol1
             persistentVolumeClaim:
-              claimName: demovol
+              claimName: demovol1
         extraVolumeMounts:
-          - mountPath: /demovol
-            name: demovol
+          - mountPath: /demovol1
+            name: demovol1
